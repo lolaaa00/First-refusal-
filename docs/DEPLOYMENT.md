@@ -42,11 +42,25 @@ These hashes were recomputed after the final fixture commit and verified immedia
 
 ## ProtectedTransfer consumers
 
-No consumer has been deployed from this revision.
+- Covered/exercise consumer: `0xa3eFf29D04e8f35A7c7971aF2400C8e9E4E81dcA`
+- Deployment transaction: `0xe62426d0c4edbbb63f693f4ff8642e3136b2c2dbf6e47e27b1331d81e1befdf1`
+- Bound right: `1`, definition hash `8399d737b66f0954f3cfc258071a728faddcd91c0ffd77fc345c5bba69d4ebcc`
+- Exact source parity: `6,548` bytes; local and on-chain SHA-256 both `639f2b6b8ce0466c418862a231dd558a739c6b001870972a3d59f51cc2a24b7c`
 
 ## Live lifecycle evidence
 
-The covered, exact-term exercise, waiver, match-window expiry, outside-scope, unresolved-offer/expiry, serialization/race, consumer-enforcement, and live fail-closed scenarios have not yet been executed. No transaction hashes or consensus outcomes are claimed.
+Covered/exact-term exercise and consumer enforcement are complete:
+
+- Right creation: `0x19eb36f62ae6446d03c06cfa6f435ce40c92113e584e455ea070dd9fb5fcacd9`
+- Holder ratification: `0xcdd234e4da605be7df4dbcb8e0d3d49bdeb11be693de79f5d60d3d572dd2c1e4`
+- Covered offer submission: `0xdfd6ea333a0e70654afef8202ba393cfc08e749e459e9aa1fc7dfe29a7e8ff06`
+- Live resolution: `0xe2f664c5cf00288d56cb899f8258f31519da979b594fdde7776585e45a2b5dec` (`COVERED`, `SUPPORTS`, `MAJORITY_AGREE`)
+- Expected pre-exercise consumer denial: `0x6317171fc39df45b3a8a33b46c78a17b1b16ad436c3d0f00fb8716c13f93d2a0` (`EXPECTED: FirstRefusal authorization denied`)
+- Exact-term holder exercise: `0x78b87cbc35da190a82b184de3d729b8a63e4a5f483df815ec71424487654cfce`
+- Authorized consumer transfer: `0x1b6abe09c5e747bdca952d0371f0ff89160dd6a18cac0377d06911217fe5f275`
+- Stored transfer: seller `0xE36AEeC44999a1C347782b4459BEdd98329B9147`, buyer `0x19Fbc43de9F8dbcE33FBa7ad34e9F4eE49E565E1`, offer `1`, frozen terms hash `61f5bbce68cd8d3e54fe9ebde2f90a937e08f862a5982bbdbcb73cfd924eb67c`.
+
+Waiver, match-window expiry, outside-scope, unresolved-offer/expiry, serialization/race, and live fail-closed scenarios remain pending.
 
 ## Immutable public evidence
 

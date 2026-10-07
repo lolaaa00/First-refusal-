@@ -1,6 +1,6 @@
 {
   "cli_version_required": "0.39.1",
-  "completion_status": "main_contract_deployed_lifecycle_pending",
+  "completion_status": "covered_lifecycle_complete_remaining_branches_pending",
   "deployments": {
     "firstrefusal": {
       "address": "0x4093EA34e2E346aE61B0239FAb5a2adA985f8d83",
@@ -8,7 +8,15 @@
       "result": "MAJORITY_AGREE",
       "status": "ACCEPTED"
     },
-    "protected_transfer": []
+    "protected_transfer": [
+      {
+        "address": "0xa3eFf29D04e8f35A7c7971aF2400C8e9E4E81dcA",
+        "deployment_tx": "0xe62426d0c4edbbb63f693f4ff8642e3136b2c2dbf6e47e27b1331d81e1befdf1",
+        "right_hash": "8399d737b66f0954f3cfc258071a728faddcd91c0ffd77fc345c5bba69d4ebcc",
+        "right_id": 1,
+        "source_parity": true
+      }
+    ]
   },
   "fixtures": {
     "covered_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json",
@@ -22,11 +30,20 @@
     "target_repository": "https://github.com/lolaaa00/First-refusal-"
   },
   "limitations": [
-    "ProtectedTransfer deployments and live lifecycle evidence are pending.",
+    "Additional branch-specific ProtectedTransfer deployments and live lifecycle evidence are pending.",
     "The required genlayer@0.39.1 development dependency tree has six npm audit findings (four moderate, two critical); automatic replacement would violate the CLI pin."
   ],
   "live_lifecycles": {
-    "covered": null,
+    "covered": {
+      "consumer_denial_tx": "0x6317171fc39df45b3a8a33b46c78a17b1b16ad436c3d0f00fb8716c13f93d2a0",
+      "consumer_transfer_tx": "0x1b6abe09c5e747bdca952d0371f0ff89160dd6a18cac0377d06911217fe5f275",
+      "exercise_tx": "0x78b87cbc35da190a82b184de3d729b8a63e4a5f483df815ec71424487654cfce",
+      "offer_id": 1,
+      "resolution": "COVERED/SUPPORTS",
+      "resolution_tx": "0xe2f664c5cf00288d56cb899f8258f31519da979b594fdde7776585e45a2b5dec",
+      "right_id": 1,
+      "terms_hash": "61f5bbce68cd8d3e54fe9ebde2f90a937e08f862a5982bbdbcb73cfd924eb67c"
+    },
     "fail_closed_negative": null,
     "match_window_expiry": null,
     "outside_scope": null,
