@@ -1,6 +1,6 @@
 {
   "asset_key": "asset-x",
-  "buyer_address": "REPLACE_WITH_FUNDED_STUDIONET_THIRD_PARTY_ADDRESS_BEFORE_FINAL_FIXTURE_COMMIT",
+  "buyer_address": "0x7099f2f0d13a9e0c208a9e140f681334cc3d6b89",
   "buyer_label": "third-party-buyer",
   "record_id": "FR-OUTSIDE-001",
   "record_type": "public-third-party-offer",
