@@ -49,51 +49,43 @@ def main() -> None:
         fixture_placeholder not in (ROOT / "fixtures" / name).read_text(encoding="utf-8")
         for name in ("covered_offer.json", "outside_scope_offer.json")
     )
-    final_payload = {
-        "project": "firstrefusal",
-        "completion_status": "awaiting_external_checkpoints",
-        "network": payload["network"],
-        "cli_version_required": "0.39.1",
-        "git": {
-            "target_repository": "https://github.com/lolaaa00/First-refusal-",
-            "final_head": None,
-            "fixture_commit": "019c8b2587b10fab430760ef01f2281617f24f2b",
-            "ci_run_url": None,
-        },
-        "fixtures": {
-            "final_addresses_installed": fixtures_final,
-            "covered_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json",
-            "outside_scope_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json",
-        },
-        "source_sha256": {
-            "firstrefusal": digest(ROOT / "contracts" / "firstrefusal.py"),
-            "protected_transfer": digest(ROOT / "contracts" / "protected_transfer.py"),
-        },
-        "deployments": {
-            "firstrefusal": None,
-            "protected_transfer": [],
-        },
-        "live_lifecycles": {
-            "covered": None,
-            "outside_scope": None,
-            "waiver": None,
-            "match_window_expiry": None,
-            "fail_closed_negative": None,
-        },
-        "verification": {
-            "direct_mode": "60 passed locally on 2026-10-07",
-            "ast_lint_firstrefusal": "passed",
-            "ast_lint_protected_transfer": "passed",
-            "full_sdk_validation": "blocked: official SDK artifact missing from linter index",
-            "preflight": "31 checks passed locally on 2026-10-07",
-            "source_parity": None,
-        },
-        "limitations": [
-            "GitHub Actions final result and live evidence are pending.",
-            "No contracts or lifecycle transactions have been deployed or signed.",
-            "GenVM full SDK validation cannot load the documented SDK hash because the linter artifact index reports it missing.",
-            "The required genlayer@0.39.1 development dependency tree has six npm audit findings (four moderate, two critical); automatic replacement would violate the CLI pin.",
-        ],
+    if FINAL_OUT.exists():
+        final_payload = json.loads(FINAL_OUT.read_text(encoding="utf-8"))
+    else:
+        final_payload = {
+            "completion_status": "awaiting_external_checkpoints",
+            "git": {},
+            "deployments": {"firstrefusal": None, "protected_transfer": []},
+            "live_lifecycles": {
+                "covered": None,
+                "outside_scope": None,
+                "waiver": None,
+                "match_window_expiry": None,
+                "fail_closed_negative": None,
+            },
+            "verification": {},
+            "limitations": [],
+        }
+
+    # Refresh reproducible facts without erasing observed deployment/lifecycle
+    # evidence recorded between checkpoints.
+    final_payload["project"] = "firstrefusal"
+    final_payload["network"] = payload["network"]
+    final_payload["cli_version_required"] = "0.39.1"
+    final_payload.setdefault("git", {})["target_repository"] = (
+        "https://github.com/lolaaa00/First-refusal-"
+    )
+    final_payload["git"]["fixture_commit"] = (
+        "019c8b2587b10fab430760ef01f2281617f24f2b"
+    )
+    final_payload["fixtures"] = {
+        "final_addresses_installed": fixtures_final,
+        "covered_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json",
+        "outside_scope_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json",
+    }
+    final_payload["source_sha256"] = {
+        "firstrefusal": digest(ROOT / "contracts" / "firstrefusal.py"),
+        "protected_transfer": digest(ROOT / "contracts" / "protected_transfer.py"),
     }
     FINAL_OUT.write_text(
         json.dumps(final_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"

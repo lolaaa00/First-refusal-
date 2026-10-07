@@ -1,8 +1,13 @@
 {
   "cli_version_required": "0.39.1",
-  "completion_status": "awaiting_external_checkpoints",
+  "completion_status": "main_contract_deployed_lifecycle_pending",
   "deployments": {
-    "firstrefusal": null,
+    "firstrefusal": {
+      "address": "0x4093EA34e2E346aE61B0239FAb5a2adA985f8d83",
+      "deployment_tx": "0x0061ff7efbd9e05caaec0c24e3f23e9bab538ade814414764d912e3adfe127db",
+      "result": "MAJORITY_AGREE",
+      "status": "ACCEPTED"
+    },
     "protected_transfer": []
   },
   "fixtures": {
@@ -11,15 +16,13 @@
     "outside_scope_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json"
   },
   "git": {
-    "ci_run_url": null,
-    "final_head": null,
+    "ci_run_url": "https://github.com/lolaaa00/First-refusal-/actions/runs/37666888213",
+    "final_head": "5d18e072acff57e617d730768eb511250318d5f4",
     "fixture_commit": "019c8b2587b10fab430760ef01f2281617f24f2b",
     "target_repository": "https://github.com/lolaaa00/First-refusal-"
   },
   "limitations": [
-    "GitHub Actions final result and live evidence are pending.",
-    "No contracts or lifecycle transactions have been deployed or signed.",
-    "GenVM full SDK validation cannot load the documented SDK hash because the linter artifact index reports it missing.",
+    "ProtectedTransfer deployments and live lifecycle evidence are pending.",
     "The required genlayer@0.39.1 development dependency tree has six npm audit findings (four moderate, two critical); automatic replacement would violate the CLI pin."
   ],
   "live_lifecycles": {
@@ -44,8 +47,8 @@
     "ast_lint_firstrefusal": "passed",
     "ast_lint_protected_transfer": "passed",
     "direct_mode": "60 passed locally on 2026-10-07",
-    "full_sdk_validation": "blocked: official SDK artifact missing from linter index",
+    "full_sdk_validation": "passed for both contracts using exact legacy archives from checksum-pinned official genvm-manager v0.6.0-rc8 bundle",
     "preflight": "31 checks passed locally on 2026-10-07",
-    "source_parity": null
+    "source_parity": "exact byte equality: 41437 bytes; on-chain and local SHA-256 e8bbfb30651456c1ae42e4e60ddb125aee395d05cde386ef12cd321a667aa41d"
   }
 }

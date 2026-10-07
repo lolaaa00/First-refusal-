@@ -2,7 +2,7 @@
 
 **Target:** stable Studionet, chain ID `61999`.
 
-No deployment has been signed from this source revision. This document records only observed evidence; absent values are marked `not yet available`.
+This document records only observed evidence; absent values are marked `not yet available`.
 
 ## Network verification
 
@@ -18,27 +18,27 @@ No deployment has been signed from this source revision. This document records o
 - Direct Mode: `60 passed` on Python `3.12`
 - GenVM AST safety lint, `contracts/firstrefusal.py`: passed (`3 checks`)
 - GenVM AST safety lint, `contracts/protected_transfer.py`: passed (`3 checks`)
-- Full GenVM SDK validation: blocked because `genvm-linter==0.11.0` reports the documented pinned SDK archive as missing from its upstream artifact index
+- Full GenVM SDK validation: passed for both contracts using the exact legacy runner archives retained in the checksum-pinned official `genvm-manager` `v0.6.0-rc8` bundle
 - Repository preflight: `31 checks passed`
 - Integration harness: compiles and collects `2` environment-gated Studionet tests
-- CI: not yet available; initial checkpoint push is pending
+- CI: passed, GitHub Actions run `37666888213` at commit `5d18e072acff57e617d730768eb511250318d5f4`
 
 ## Source record
 
 - FirstRefusal SHA-256: `e8bbfb30651456c1ae42e4e60ddb125aee395d05cde386ef12cd321a667aa41d`
 - ProtectedTransfer SHA-256: `639f2b6b8ce0466c418862a231dd558a739c6b001870972a3d59f51cc2a24b7c`
-- Final git HEAD: not yet available
-- Deployed-source parity: not yet available
+- Deployment checkpoint git HEAD: `5d18e072acff57e617d730768eb511250318d5f4`
+- Deployed-source parity: exact byte equality (`41,437` bytes); local and on-chain SHA-256 both `e8bbfb30651456c1ae42e4e60ddb125aee395d05cde386ef12cd321a667aa41d`
 
-These hashes are a local checkpoint only. They must be recomputed after the final fixture commit and immediately before deployment.
+These hashes were recomputed after the final fixture commit and verified immediately before deployment.
 
 ## Main contract
 
-- Address: not yet available
-- Deployment transaction: not yet available
-- Finalized state: not yet available
+- Address: `0x4093EA34e2E346aE61B0239FAb5a2adA985f8d83`
+- Deployment transaction: `0x0061ff7efbd9e05caaec0c24e3f23e9bab538ade814414764d912e3adfe127db`
+- Finalized state: `ACCEPTED`, `MAJORITY_AGREE`, one consensus round
 - Explorer link: not yet available
-- On-chain normalized source SHA-256: not yet available
+- On-chain source SHA-256: `e8bbfb30651456c1ae42e4e60ddb125aee395d05cde386ef12cd321a667aa41d`
 
 ## ProtectedTransfer consumers
 
@@ -57,5 +57,5 @@ The covered, exact-term exercise, waiver, match-window expiry, outside-scope, un
 
 ## External blockers as of 2026-10-07
 
-1. Deployment, lifecycle evidence, source parity, and final CI remain pending.
+1. Lifecycle evidence and ProtectedTransfer consumer deployments remain pending.
 2. `npm audit` reports four moderate and two critical advisories in transitive development dependencies bundled by the required `genlayer@0.39.1` CLI (Vitest/Tinypool and Dockerode/UUID paths). The suggested automatic change would replace the mandated CLI version and therefore has not been applied. These packages are tooling dependencies, not contract runtime code.
