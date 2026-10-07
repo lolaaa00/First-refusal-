@@ -1,0 +1,11 @@
+The folder I have opened in Codex is the extracted FirstRefusal package. Do not clone another copy and do not create the GitHub repository for me. The intended repository is lolaaa00/First-refusal-, which I created separately.
+
+Read FIRSTREFUSAL_CODEX_HANDOFF.txt first and treat it as the master specification. Finish the repository completely: audit and harden both contracts, fix every lint/runtime/API issue, expand adversarial Direct Mode coverage, keep it contract-only with NO frontend or backend authority, and use only stable Studionet chain ID 61999 with the repository-pinned GenLayer CLI 0.39.1. At every network checkpoint verify the canonical RPC https://studio.genlayer.com/api and chain ID 61999 before signing.
+
+Set this exact extracted folder's origin to lolaaa00/First-refusal- only. Never push to ometere123. Commit and push after each completed checkpoint in the handoff.
+
+The final job is not complete until you have: green Direct Mode tests, green GenVM lint for both contracts, green preflight and CI, immutable commit-pinned public offer fixtures, a fresh finalized 61999 FirstRefusal deployment, a fresh finalized ProtectedTransfer consumer deployment, a live COVERED-offer lifecycle proving the third party is blocked before exercise and the holder is permitted after exact-term exercise, a separate live OUTSIDE_SCOPE lifecycle, at least one meaningful live fail-closed negative path if practical, deployed-source parity hashes, accurate explorer links/tx hashes in docs/DEPLOYMENT.md, and a strict final hostile-review pass.
+
+Do not fabricate addresses, transactions, test counts or consensus results. If current stable APIs differ from the scaffold, make the smallest correct change while preserving every protocol invariant in the master handoff, then prove it with tests and live evidence.
+
+At the end, report the final HEAD, CI run, test counts, lint/preflight results, contract addresses, deployment and lifecycle transaction links, source-parity hashes, fixture commit/URLs, and every remaining limitation.

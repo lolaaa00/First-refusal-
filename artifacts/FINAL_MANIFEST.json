@@ -1,0 +1,53 @@
+{
+  "cli_version_required": "0.39.1",
+  "completion_status": "awaiting_external_checkpoints",
+  "deployments": {
+    "firstrefusal": null,
+    "protected_transfer": []
+  },
+  "fixtures": {
+    "covered_url": null,
+    "final_addresses_installed": false,
+    "outside_scope_url": null
+  },
+  "git": {
+    "ci_run_url": null,
+    "final_head": null,
+    "fixture_commit": null,
+    "target_repository": "https://github.com/lolaaa00/First-refusal-"
+  },
+  "limitations": [
+    "GitHub repository exists; checkpoint history, fixtures, CI, and live evidence are pending.",
+    "Final fixture buyer address and immutable fixture commit are not available.",
+    "Only one existing local Studionet account is funded; holder and third-party accounts have zero balance.",
+    "No contracts or lifecycle transactions have been deployed or signed.",
+    "GenVM full SDK validation cannot load the documented SDK hash because the linter artifact index reports it missing.",
+    "The required genlayer@0.39.1 development dependency tree has six npm audit findings (four moderate, two critical); automatic replacement would violate the CLI pin."
+  ],
+  "live_lifecycles": {
+    "covered": null,
+    "fail_closed_negative": null,
+    "match_window_expiry": null,
+    "outside_scope": null,
+    "waiver": null
+  },
+  "network": {
+    "chain_id": 61999,
+    "explorer": "https://explorer-studio.genlayer.com",
+    "name": "Studionet",
+    "rpc": "https://studio.genlayer.com/api"
+  },
+  "project": "firstrefusal",
+  "source_sha256": {
+    "firstrefusal": "e8bbfb30651456c1ae42e4e60ddb125aee395d05cde386ef12cd321a667aa41d",
+    "protected_transfer": "639f2b6b8ce0466c418862a231dd558a739c6b001870972a3d59f51cc2a24b7c"
+  },
+  "verification": {
+    "ast_lint_firstrefusal": "passed",
+    "ast_lint_protected_transfer": "passed",
+    "direct_mode": "60 passed locally on 2026-10-07",
+    "full_sdk_validation": "blocked: official SDK artifact missing from linter index",
+    "preflight": "31 checks passed locally on 2026-10-07",
+    "source_parity": null
+  }
+}

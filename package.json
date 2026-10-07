@@ -1,0 +1,15 @@
+{
+  "name": "firstrefusal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone GenLayer right-of-first-refusal primitive for Studionet 61999",
+  "scripts": {
+    "genlayer": "npx --no-install genlayer",
+    "network:info": "npx --no-install genlayer network info",
+    "preflight": "python scripts/preflight.py",
+    "test:direct": "pytest tests/direct -v"
+  },
+  "devDependencies": {
+    "genlayer": "0.39.1"
+  }
+}

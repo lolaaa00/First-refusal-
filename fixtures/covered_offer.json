@@ -1,0 +1,15 @@
+{
+  "asset_key": "asset-x",
+  "buyer_address": "REPLACE_WITH_FUNDED_STUDIONET_THIRD_PARTY_ADDRESS_BEFORE_FINAL_FIXTURE_COMMIT",
+  "buyer_label": "third-party-buyer",
+  "record_id": "FR-COVERED-001",
+  "record_type": "public-third-party-offer",
+  "statement": "The third party offers 8000 minor units of GEN for a full transfer of asset-x with settlement within 2 days.",
+  "terms": {
+    "currency": "GEN",
+    "price_minor": 8000,
+    "settlement_days": 2,
+    "transfer_type": "full transfer"
+  },
+  "transaction": "full transfer of asset-x for monetary consideration"
+}

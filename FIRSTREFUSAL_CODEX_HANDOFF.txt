@@ -1,0 +1,357 @@
+FIRSTREFUSAL — CODEX COMPLETION HANDOFF
+======================================
+
+GOAL
+----
+Finish, harden, live-prove and submit a contract-only GenLayer Intelligent
+Contract primitive for an enforceable right of first refusal. The target GitHub
+repository is:
+
+    lolaaa00/First-refusal-
+
+The human will create that repository later. She will unzip this package herself
+and open the extracted folder in Codex. DO NOT clone into another folder, DO NOT
+create the GitHub repository for her, and DO NOT push anything to ometere123.
+
+HARD NETWORK LOCK
+-----------------
+This job is STUDIONET 61999 ONLY.
+
+Canonical RPC:
+    https://studio.genlayer.com/api
+
+Explorer:
+    https://explorer-studio.genlayer.com
+
+Required chain ID:
+    61999
+
+Pinned repository-local CLI:
+    genlayer@0.39.1
+
+At every deployment/signing checkpoint, run BOTH:
+
+    python scripts/check_studionet.py
+    npm run genlayer -- network set studionet
+    npm run genlayer -- network info
+
+If the effective chain ID is not exactly 61999, STOP. Do not sign, deploy or
+write anything until the configuration is corrected.
+
+PRODUCT BOUNDARY
+----------------
+NO FRONTEND.
+NO BACKEND AUTHORITY.
+NO WALLET UI.
+NO DOCKER REQUIREMENT.
+NO generic demo app.
+
+This must remain a standalone reusable Intelligent Contract submission.
+
+The repository contains two deployable contracts:
+
+1. contracts/firstrefusal.py
+   The reusable primitive.
+
+2. contracts/protected_transfer.py
+   A deliberately tiny consumer proving another IC can pin a right hash and
+   actually block/permit a state transition.
+
+NON-NEGOTIABLE PROTOCOL INVARIANTS
+----------------------------------
+Preserve these even if implementation details must change:
+
+1. A right is not binding until the holder ratifies it.
+2. Right definition is immutable and hash-pinned.
+3. Only the grantor may register a third-party offer.
+4. Offer terms are canonicalized deterministically and hashed.
+5. Required term keys are deterministic.
+6. One unresolved/open offer encumbers a right at a time.
+7. Public evidence must be HTTPS and validators independently re-fetch it.
+8. The semantic surface is bounded:
+       evidence: SUPPORTS / CONTRADICTS / INSUFFICIENT / UNAVAILABLE / UNSAFE
+       coverage: COVERED / OUTSIDE_SCOPE / AMBIGUOUS
+9. Coverage is consequential only when evidence SUPPORTS the exact declared offer.
+10. AMBIGUOUS / UNAVAILABLE / CONTRADICTED / QUARANTINED fail closed.
+11. A COVERED offer blocks third-party transfer during the match window.
+12. Holder exercise must reproduce the EXACT frozen terms hash. No LLM
+    substantial-equivalence shortcut is allowed.
+13. EXERCISED authorizes only the holder + exact terms hash.
+14. WAIVED / RELEASED / OUTSIDE_SCOPE authorize only the original third party
+    + exact terms hash.
+15. Wrong right hash, wrong buyer or wrong terms hash must always deny.
+16. The model never invents a price, chooses a buyer, rewrites terms, grants the
+    right, waives the right, or controls the match window.
+17. The primitive never claims to enforce transfers in systems that do not
+    integrate it.
+
+STARTING POINT
+--------------
+Treat this ZIP as an advanced pre-deployment implementation, not as proof that
+runtime work is finished. Inspect every file and current GenLayer APIs before
+trusting it. If a pinned SDK/API shape needs adjustment for stable Studionet,
+make the smallest coherent correction, keep the protocol invariants above, and
+prove the correction with lint/tests/live evidence.
+
+CHECKPOINT 0 — REPOSITORY / REMOTE
+----------------------------------
+After the human has created lolaaa00/First-refusal- and opened THIS extracted
+folder in Codex:
+
+1. Inspect git status/remotes.
+2. If needed, initialize git in this exact folder.
+3. Set origin ONLY to:
+       https://github.com/lolaaa00/First-refusal-.git
+4. Confirm no remote points to ometere123.
+5. Create/push main if this is a brand-new empty repository.
+6. From this point on, commit and push after every completed checkpoint.
+
+Do not overwrite unrelated remote history if the repository is not empty.
+
+CHECKPOINT 1 — TOOLCHAIN / BASELINE
+----------------------------------
+Use Python 3.12+ and Node 20+.
+
+Run:
+
+    npm install
+    npm run genlayer -- --version
+
+The local package version must be 0.39.1.
+
+Then:
+
+    python -m venv .venv
+    # activate .venv
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+
+Run:
+
+    python scripts/preflight.py
+    genvm-lint check contracts/firstrefusal.py
+    genvm-lint check contracts/protected_transfer.py
+    pytest tests/direct -v
+    python -m py_compile tests/integration/test_studionet_lifecycle.py
+
+Fix EVERYTHING until green. Do not weaken tests to make code pass.
+
+Commit/push checkpoint 1.
+
+CHECKPOINT 2 — ADVERSARIAL HARDENING
+------------------------------------
+Deeply audit firstrefusal.py like a hostile reviewer.
+
+Add/fix tests for at least:
+
+- malicious leader classification;
+- validator disagreement;
+- fabricated excerpt;
+- public source mutation/disagreement;
+- prompt injection/control language;
+- private/local/ambiguous URL forms;
+- malformed model output;
+- malformed terms JSON;
+- duplicate/normalized term keys;
+- missing required keys;
+- holder/grantor/third-party role confusion;
+- offer serialization/races;
+- wrong right ID;
+- wrong right hash;
+- wrong buyer;
+- wrong terms hash;
+- one-field changed terms during exercise;
+- waiver only by holder;
+- pending offer cancellation cannot bypass the active right;
+- right expiry cannot erase an unresolved offer;
+- covered window expiry;
+- stale/terminal offer replay;
+- consumer transfer replay/current-owner checks;
+- consumer unencumbered transfer before activation / after expiry;
+- exact source-grounding of SUPPORTS evidence.
+
+Use direct_vm.warp(...) for deadline/expiry branches rather than sleeping.
+Set direct_vm.check_pickling = True in serialization-sensitive tests.
+
+Aim for a genuinely adversarial suite, not an arbitrary vanity test count.
+If mutation testing is practical, use it and kill all meaningful mutants around
+authorization, hashes, role checks and terminal states.
+
+Commit/push checkpoint 2.
+
+CHECKPOINT 3 — FINAL PUBLIC FIXTURES
+-----------------------------------
+The live public fixture must include the REAL funded Studionet third-party
+address used in the demo.
+
+Update fixtures/covered_offer.json and fixtures/outside_scope_offer.json so the
+buyer address and terms exactly match the live demo accounts.
+
+Commit and push the fixtures first. Record the resulting immutable commit SHA.
+Use commit-pinned URLs only:
+
+    https://raw.githubusercontent.com/lolaaa00/First-refusal-/<SHA>/fixtures/covered_offer.json
+    https://raw.githubusercontent.com/lolaaa00/First-refusal-/<SHA>/fixtures/outside_scope_offer.json
+
+Put those URLs in local .env variables used by the integration harness.
+Do not commit secrets.
+
+Commit/push checkpoint 3 if any non-fixture code/docs change is needed.
+
+CHECKPOINT 4 — 61999 MAIN DEPLOYMENT
+------------------------------------
+Run the network lock checks again.
+
+Deploy a FRESH FirstRefusal contract to Studionet 61999 with the repository-local
+CLI/toolchain. Do not reuse an old address from another source revision.
+
+Wait for FINALIZED consensus. Record:
+
+- contract address;
+- deployment tx hash;
+- explorer URL;
+- finalized execution/consensus state;
+- exact git commit;
+- local source SHA-256.
+
+Immediately retrieve deployed code with the CLI and verify source parity against
+contracts/firstrefusal.py. Record both normalized hashes.
+
+Update docs/DEPLOYMENT.md truthfully.
+Commit/push checkpoint 4.
+
+CHECKPOINT 5 — COVERED LIVE LIFECYCLE
+-------------------------------------
+Use distinct funded accounts:
+
+A grantor/current owner
+B holder
+C third-party buyer
+
+Perform and FINALIZE:
+
+1. A create_right
+2. B ratify_right
+3. A submit_offer(C, exact covered terms, commit-pinned covered fixture)
+4. resolve_offer under real multi-validator consensus
+5. verify offer = COVERED, evidence = SUPPORTS, relation = COVERED
+6. verify third-party transfer authorization is FALSE during match window
+7. deploy a FRESH ProtectedTransfer consumer pinned to the right hash
+8. prove consumer transfer to C fails
+9. B exercise with the exact frozen terms
+10. prove changed one-field terms cannot exercise/authorize
+11. prove authorization now permits B and denies C
+12. execute ProtectedTransfer transfer to B
+13. verify consumer owner changed to B
+
+Capture every tx hash, explorer link and final state.
+
+Commit/push checkpoint 5.
+
+CHECKPOINT 6 — OUTSIDE-SCOPE LIVE LIFECYCLE
+-------------------------------------------
+Use a fresh right and, preferably, a fresh consumer so scenario A ownership does
+not muddy the evidence.
+
+Submit the temporary-licence outside-scope fixture.
+
+Prove under real consensus:
+
+- public evidence SUPPORTS the declared offer;
+- relation = OUTSIDE_SCOPE;
+- original third party + exact terms is authorized;
+- wrong buyer is denied;
+- wrong terms hash is denied.
+
+Record finalized explorer evidence in docs/DEPLOYMENT.md.
+Commit/push checkpoint 6.
+
+CHECKPOINT 7 — LIVE NEGATIVE / FAIL-CLOSED PROOF
+-----------------------------------------------
+Add at least one high-signal live negative path if practical, using public
+immutable fixture evidence:
+
+- contradictory terms;
+- ambiguous scope;
+- or clearly unsafe control-language source.
+
+The resulting state must not authorize transfer.
+
+Do not invent tx hashes if a hosted call fails. Record the actual limitation and
+retry only after diagnosing the cause.
+
+Commit/push checkpoint 7.
+
+CHECKPOINT 8 — CI / SOURCE PARITY / DOCS
+----------------------------------------
+Run the full local suite again.
+
+Push and ensure GitHub Actions is green.
+
+README and docs must contain only current facts:
+
+- final test counts;
+- fresh 61999 addresses;
+- finalized tx hashes/explorer links;
+- source parity hashes;
+- immutable fixture commit;
+- exact public evidence URLs;
+- known limitations.
+
+Delete stale claims and TODOs that should now be resolved.
+Leave no secret keys, local paths, generated junk, or unrelated files.
+
+Generate:
+
+    python scripts/make_manifest.py
+
+Commit/push checkpoint 8.
+
+CHECKPOINT 9 — STRICT REVIEW BEFORE SUBMISSION
+---------------------------------------------
+Review the repository as if trying to reject it.
+
+Confirm:
+
+- It is genuinely contract-only and reusable.
+- There is real GenLayer semantic consensus, not format validation.
+- Validators independently re-observe the public evidence.
+- Exact-term matching and transfer authorization remain deterministic.
+- There is no model-controlled buyer/price/remedy.
+- Ambiguity fails closed.
+- Cross-contract consumer proof is live, not theoretical.
+- All canonical evidence targets chain 61999.
+- Every claimed tx/address/test count is reproducible.
+- README explains the primitive before explaining the LLM.
+- Submission notes are concise and match deployed reality.
+
+Do not stop at "works". Stop when it is defensible under a hostile reviewer.
+
+FINAL REPORT BACK TO THE HUMAN
+------------------------------
+Return a compact final report containing:
+
+1. final git HEAD;
+2. GitHub Actions run URL + status;
+3. Direct Mode test count;
+4. GenVM lint results;
+5. preflight result;
+6. FirstRefusal address + deployment tx + explorer link;
+7. ProtectedTransfer address(es) + deployment tx(s) + explorer link(s);
+8. covered-offer lifecycle tx links;
+9. outside-scope lifecycle tx links;
+10. any live negative-path link;
+11. local/on-chain source hashes and parity result;
+12. immutable fixture commit + URLs;
+13. any remaining limitation, stated plainly.
+
+ABSOLUTE PROHIBITIONS
+---------------------
+- Do not add a frontend.
+- Do not add backend authority.
+- Do not use an alternate chain.
+- Do not use a globally installed CLI when the repo-pinned CLI is available.
+- Do not fabricate live evidence.
+- Do not claim cross-contract proof until the consumer actually finalizes live.
+- Do not push to ometere123.
+- Do not silently weaken protocol invariants to make deployment easier.
