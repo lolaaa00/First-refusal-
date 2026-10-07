@@ -81,7 +81,7 @@ def main() -> None:
     final_payload["fixtures"] = {
         "final_addresses_installed": fixtures_final,
         "covered_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json",
-        "outside_scope_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json",
+        "outside_scope_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/8f1acdde09309d0a65541aa28a7ec7a07f1c66ce/fixtures/outside_scope_offer.json",
     }
     final_payload["source_sha256"] = {
         "firstrefusal": digest(ROOT / "contracts" / "firstrefusal.py"),

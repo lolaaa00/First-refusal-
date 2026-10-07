@@ -66,7 +66,7 @@ Waiver, match-window expiry, outside-scope, unresolved-offer/expiry, serializati
 
 - Fixture commit: `019c8b2587b10fab430760ef01f2281617f24f2b`
 - Covered fixture URL: `https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json`
-- Outside-scope fixture URL: `https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json`
+- Outside-scope fixture URL: `https://raw.githubusercontent.com/lolaaa00/First-refusal-/8f1acdde09309d0a65541aa28a7ec7a07f1c66ce/fixtures/outside_scope_offer.json`
 - Both URLs were fetched after the push and contain buyer `0x7099f2f0d13a9e0c208a9e140f681334cc3d6b89` with the exact frozen terms used by the integration harness.
 
 ## External blockers as of 2026-10-07
