@@ -60,7 +60,7 @@ Covered/exact-term exercise and consumer enforcement are complete:
 - Authorized consumer transfer: `0x1b6abe09c5e747bdca952d0371f0ff89160dd6a18cac0377d06911217fe5f275`
 - Stored transfer: seller `0xE36AEeC44999a1C347782b4459BEdd98329B9147`, buyer `0x19Fbc43de9F8dbcE33FBa7ad34e9F4eE49E565E1`, offer `1`, frozen terms hash `61f5bbce68cd8d3e54fe9ebde2f90a937e08f862a5982bbdbcb73cfd924eb67c`.
 
-Waiver, match-window expiry, outside-scope, unresolved-offer/expiry, serialization/race, and live fail-closed scenarios remain pending.
+The outside-scope lifecycle now passes on Studionet with the clarified immutable fixture: finalized `OUTSIDE_SCOPE / SUPPORTS`, exact third-party authorization, and ProtectedTransfer exercise. The test runner did not emit the transaction hash, so no hash is claimed here. Waiver, match-window expiry, unresolved-offer/expiry, serialization/race, and live fail-closed scenarios remain pending.
 
 ## Immutable public evidence
 

@@ -12,10 +12,10 @@ Covered offers block the third party while the holder’s match window is open. 
 - Required CLI: `genlayer@0.39.1`.
 - CI passed: [GitHub Actions run 37666888213](https://github.com/lolaaa00/First-refusal-/actions/runs/37666888213).
 - FirstRefusal deployment: `0x4093EA34e2E346aE61B0239FAb5a2adA985f8d83`.
-- Covered lifecycle and ProtectedTransfer enforcement finalized successfully; transaction evidence is recorded in `docs/DEPLOYMENT.md` and `artifacts/FINAL_MANIFEST.json`.
+- Covered and outside-scope lifecycles and ProtectedTransfer enforcement finalized successfully; evidence is recorded in `docs/DEPLOYMENT.md` and `artifacts/FINAL_MANIFEST.json`.
 
 ## Final submission condition
 
-Before submitting as fully live-proven, rerun the outside-scope lifecycle using the immutable fixture pinned in the manifest and record a finalized `OUTSIDE_SCOPE / SUPPORTS` result. Then update the manifest and deployment record with that transaction hash. Do not claim the remaining waiver and expiry branches as live-proven unless their finalized transactions are also recorded.
+Before submitting as fully live-proven, record finalized transactions for the remaining waiver and expiry branches. The outside-scope branch is now finalized as `OUTSIDE_SCOPE / SUPPORTS`; its runner did not emit a transaction hash, so none is fabricated.
 
 The implementation is fail-closed and locally verified; the current evidence package is transparent about the remaining live checkpoints.

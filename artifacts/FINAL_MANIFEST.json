@@ -1,6 +1,6 @@
 {
   "cli_version_required": "0.39.1",
-  "completion_status": "covered_lifecycle_complete_remaining_branches_pending",
+  "completion_status": "covered_and_outside_scope_live_complete_remaining_branches_pending",
   "deployments": {
     "firstrefusal": {
       "address": "0x4093EA34e2E346aE61B0239FAb5a2adA985f8d83",
@@ -46,7 +46,13 @@
     },
     "fail_closed_negative": null,
     "match_window_expiry": null,
-    "outside_scope": null,
+    "outside_scope": {
+      "status": "passed",
+      "resolution": "OUTSIDE_SCOPE/SUPPORTS",
+      "fixture_commit": "8f1acdde09309d0a65541aa28a7ec7a07f1c66ce",
+      "transaction_hash": null,
+      "note": "Finalized Studionet integration test passed; runner did not emit the transaction hash."
+    },
     "waiver": null
   },
   "network": {
