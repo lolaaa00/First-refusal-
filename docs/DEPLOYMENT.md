@@ -71,5 +71,5 @@ Waiver, match-window expiry, outside-scope, unresolved-offer/expiry, serializati
 
 ## External blockers as of 2026-10-07
 
-1. Lifecycle evidence and ProtectedTransfer consumer deployments remain pending.
+1. Additional branch-specific ProtectedTransfer deployments and live lifecycle evidence remain pending.
 2. `npm audit` reports four moderate and two critical advisories in transitive development dependencies bundled by the required `genlayer@0.39.1` CLI (Vitest/Tinypool and Dockerode/UUID paths). The suggested automatic change would replace the mandated CLI version and therefore has not been applied. These packages are tooling dependencies, not contract runtime code.
