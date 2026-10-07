@@ -16,8 +16,8 @@ from gltest import get_accounts, get_contract_factory
 from gltest.assertions import tx_execution_failed, tx_execution_succeeded
 
 
-FIRSTREFUSAL = "contracts/firstrefusal.py"
-PROTECTED = "contracts/protected_transfer.py"
+FIRSTREFUSAL = "firstrefusal.py"
+PROTECTED = "protected_transfer.py"
 RUN = os.environ.get("RUN_STUDIONET") == "1"
 COVERED_URL = os.environ.get("PUBLIC_COVERED_OFFER_URL", "")
 OUTSIDE_URL = os.environ.get("PUBLIC_OUTSIDE_SCOPE_OFFER_URL", "")
@@ -39,6 +39,11 @@ SCOPE = (
 TX_KW = {
     "consensus_max_rotations": 3,
     "wait_until": "finalized",
+    "wait_interval": 10000,
+    "wait_retries": 60,
+}
+DEPLOY_KW = {
+    "consensus_max_rotations": 3,
     "wait_interval": 10000,
     "wait_retries": 60,
 }
@@ -71,29 +76,28 @@ def test_covered_offer_exercise_and_consumer_gate():
     grantor, holder, third_party = accounts[:3]
 
     factory = get_contract_factory(contract_file_path=FIRSTREFUSAL)
-    first = factory.deploy(account=grantor, **TX_KW)
+    first = factory.deploy(account=grantor, **DEPLOY_KW)
     assert first.address
+    holder_first = factory.build_contract(contract_address=first.address, account=holder)
 
     expiry = int(time.time()) + 30 * 24 * 60 * 60
     ok(tx(first.create_right(
         args=[holder.address, "Asset X ROFR", "asset-x", SCOPE, REQUIRED, 3600, expiry],
-        account=grantor,
     )))
     right_id = 1
     right = first.get_right(args=[right_id]).call()
     assert right["status_name"] == "DRAFT"
 
-    ok(tx(first.ratify_right(args=[right_id], account=holder)))
+    ok(tx(holder_first.ratify_right(args=[right_id])))
     right = first.get_right(args=[right_id]).call()
     assert right["status_name"] == "ACTIVE"
     right_hash = right["definition_hash"]
 
     ok(tx(first.submit_offer(
         args=[right_id, third_party.address, TERMS, COVERED_URL],
-        account=grantor,
     )))
     offer_id = 1
-    ok(tx(first.resolve_offer(args=[offer_id], account=grantor)))
+    ok(tx(first.resolve_offer(args=[offer_id])))
     offer = first.get_offer(args=[offer_id]).call()
     assert offer["status_name"] == "COVERED", offer
     assert offer["evidence_status_name"] == "SUPPORTS", offer
@@ -102,25 +106,22 @@ def test_covered_offer_exercise_and_consumer_gate():
     consumer_factory = get_contract_factory(contract_file_path=PROTECTED)
     consumer = consumer_factory.deploy(
         args=[first.address, right_id, right_hash, grantor.address],
-        account=grantor,
-        **TX_KW,
+        **DEPLOY_KW,
     )
     assert consumer.address
 
     denied = tx(consumer.transfer_with_offer(
         args=[offer_id, third_party.address, offer["terms_hash"], "11" * 32],
-        account=grantor,
     ))
     assert tx_execution_failed(denied), denied
     assert consumer.get_owner().call().lower() == grantor.address.lower()
 
-    ok(tx(first.exercise(args=[offer_id, TERMS], account=holder)))
+    ok(tx(holder_first.exercise(args=[offer_id, TERMS])))
     exercised = first.get_offer(args=[offer_id]).call()
     assert exercised["status_name"] == "EXERCISED"
 
     ok(tx(consumer.transfer_with_offer(
         args=[offer_id, holder.address, offer["terms_hash"], "22" * 32],
-        account=grantor,
     )))
     assert consumer.get_owner().call().lower() == holder.address.lower()
 
@@ -135,16 +136,16 @@ def test_outside_scope_offer_releases_only_exact_third_party_terms():
     grantor, holder, third_party = accounts[:3]
 
     factory = get_contract_factory(contract_file_path=FIRSTREFUSAL)
-    first = factory.deploy(account=grantor, **TX_KW)
+    first = factory.deploy(account=grantor, **DEPLOY_KW)
     assert first.address
+    holder_first = factory.build_contract(contract_address=first.address, account=holder)
 
     expiry = int(time.time()) + 30 * 24 * 60 * 60
     ok(tx(first.create_right(
         args=[holder.address, "Asset X ROFR", "asset-x", SCOPE, REQUIRED, 3600, expiry],
-        account=grantor,
     )))
     right_id = 1
-    ok(tx(first.ratify_right(args=[right_id], account=holder)))
+    ok(tx(holder_first.ratify_right(args=[right_id])))
     right = first.get_right(args=[right_id]).call()
     right_hash = right["definition_hash"]
 
@@ -158,10 +159,9 @@ def test_outside_scope_offer_releases_only_exact_third_party_terms():
     )
     ok(tx(first.submit_offer(
         args=[right_id, third_party.address, outside_terms, OUTSIDE_URL],
-        account=grantor,
     )))
     offer_id = 1
-    ok(tx(first.resolve_offer(args=[offer_id], account=grantor)))
+    ok(tx(first.resolve_offer(args=[offer_id])))
     offer = first.get_offer(args=[offer_id]).call()
     assert offer["status_name"] == "OUTSIDE_SCOPE", offer
     assert offer["evidence_status_name"] == "SUPPORTS", offer
@@ -180,11 +180,9 @@ def test_outside_scope_offer_releases_only_exact_third_party_terms():
     consumer_factory = get_contract_factory(contract_file_path=PROTECTED)
     consumer = consumer_factory.deploy(
         args=[first.address, right_id, right_hash, grantor.address],
-        account=grantor,
-        **TX_KW,
+        **DEPLOY_KW,
     )
     ok(tx(consumer.transfer_with_offer(
         args=[offer_id, third_party.address, offer["terms_hash"], "33" * 32],
-        account=grantor,
     )))
     assert consumer.get_owner().call().lower() == third_party.address.lower()
