@@ -14,6 +14,7 @@ import pytest
 
 from gltest import get_accounts, get_contract_factory
 from gltest.assertions import tx_execution_failed, tx_execution_succeeded
+from gltest.types import TransactionStatus
 
 
 FIRSTREFUSAL = "firstrefusal.py"
@@ -38,7 +39,7 @@ SCOPE = (
 
 TX_KW = {
     "consensus_max_rotations": 3,
-    "wait_until": "finalized",
+    "wait_transaction_status": TransactionStatus.FINALIZED,
     "wait_interval": 10000,
     "wait_retries": 60,
 }
