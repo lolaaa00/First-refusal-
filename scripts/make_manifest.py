@@ -57,13 +57,13 @@ def main() -> None:
         "git": {
             "target_repository": "https://github.com/lolaaa00/First-refusal-",
             "final_head": None,
-            "fixture_commit": None,
+            "fixture_commit": "019c8b2587b10fab430760ef01f2281617f24f2b",
             "ci_run_url": None,
         },
         "fixtures": {
             "final_addresses_installed": fixtures_final,
-            "covered_url": None,
-            "outside_scope_url": None,
+            "covered_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json",
+            "outside_scope_url": "https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json",
         },
         "source_sha256": {
             "firstrefusal": digest(ROOT / "contracts" / "firstrefusal.py"),
@@ -89,9 +89,7 @@ def main() -> None:
             "source_parity": None,
         },
         "limitations": [
-            "GitHub repository exists; checkpoint history, fixtures, CI, and live evidence are pending.",
-            "Final fixture buyer address and immutable fixture commit are not available.",
-            "Only one existing local Studionet account is funded; holder and third-party accounts have zero balance.",
+            "GitHub Actions final result and live evidence are pending.",
             "No contracts or lifecycle transactions have been deployed or signed.",
             "GenVM full SDK validation cannot load the documented SDK hash because the linter artifact index reports it missing.",
             "The required genlayer@0.39.1 development dependency tree has six npm audit findings (four moderate, two critical); automatic replacement would violate the CLI pin.",

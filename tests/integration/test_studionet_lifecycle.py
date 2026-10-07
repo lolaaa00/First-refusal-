@@ -16,8 +16,8 @@ from gltest import get_accounts, get_contract_factory
 from gltest.assertions import tx_execution_failed, tx_execution_succeeded
 
 
-FIRSTREFUSAL = "firstrefusal.py"
-PROTECTED = "protected_transfer.py"
+FIRSTREFUSAL = "contracts/firstrefusal.py"
+PROTECTED = "contracts/protected_transfer.py"
 RUN = os.environ.get("RUN_STUDIONET") == "1"
 COVERED_URL = os.environ.get("PUBLIC_COVERED_OFFER_URL", "")
 OUTSIDE_URL = os.environ.get("PUBLIC_OUTSIDE_SCOPE_OFFER_URL", "")

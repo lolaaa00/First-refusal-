@@ -50,15 +50,12 @@ The covered, exact-term exercise, waiver, match-window expiry, outside-scope, un
 
 ## Immutable public evidence
 
-- Fixture commit: not yet available
-- Covered fixture URL: not yet available
-- Outside-scope fixture URL: not yet available
-- Blocker: the fixture buyer is still a deliberate placeholder rather than a funded third-party account.
+- Fixture commit: `019c8b2587b10fab430760ef01f2281617f24f2b`
+- Covered fixture URL: `https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/covered_offer.json`
+- Outside-scope fixture URL: `https://raw.githubusercontent.com/lolaaa00/First-refusal-/019c8b2587b10fab430760ef01f2281617f24f2b/fixtures/outside_scope_offer.json`
+- Both URLs were fetched after the push and contain buyer `0x7099f2f0d13a9e0c208a9e140f681334cc3d6b89` with the exact frozen terms used by the integration harness.
 
 ## External blockers as of 2026-10-07
 
-1. The empty user-created GitHub repository is available; initial checkpoint history and immutable fixture commits remain pending.
-2. Only the existing local `probe2` Studionet account is funded (`4998.99 GEN`). The available holder and third-party accounts checked locally have `0 GEN`.
-3. Immutable fixture URLs require a real funded third-party address and a pushed fixture commit.
-4. Deployment, lifecycle evidence, source parity, and CI necessarily remain pending until those prerequisites exist.
-5. `npm audit` reports four moderate and two critical advisories in transitive development dependencies bundled by the required `genlayer@0.39.1` CLI (Vitest/Tinypool and Dockerode/UUID paths). The suggested automatic change would replace the mandated CLI version and therefore has not been applied. These packages are tooling dependencies, not contract runtime code.
+1. Deployment, lifecycle evidence, source parity, and final CI remain pending.
+2. `npm audit` reports four moderate and two critical advisories in transitive development dependencies bundled by the required `genlayer@0.39.1` CLI (Vitest/Tinypool and Dockerode/UUID paths). The suggested automatic change would replace the mandated CLI version and therefore has not been applied. These packages are tooling dependencies, not contract runtime code.

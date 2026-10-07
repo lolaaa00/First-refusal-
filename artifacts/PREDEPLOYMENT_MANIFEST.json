@@ -1,6 +1,6 @@
 {
   "files": {
-    ".env.example": "4607393c2f1ebda9c9873130c0541cc64f3ebc69eb24ac04042f3ab2120816e9",
+    ".env.example": "817660cd6e1af6156dd3a15aee3b7a38aad7d3da4b051293a85bc94a6e45aebd",
     ".github/workflows/ci.yml": "a99e3e9dac49abd82ebf6c0f28c076d2199ac8e981f8c82dd4af060c9963c211",
     ".gitignore": "39868d2691a984d3d99fb36ec661c3211746f2cba3354bd69e7a6971e27499f6",
     ".pytest_cache/.gitignore": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
@@ -15,23 +15,23 @@
     "contracts/firstrefusal.py": "e8bbfb30651456c1ae42e4e60ddb125aee395d05cde386ef12cd321a667aa41d",
     "contracts/protected_transfer.py": "639f2b6b8ce0466c418862a231dd558a739c6b001870972a3d59f51cc2a24b7c",
     "docs/ARCHITECTURE.md": "897682dbe00764aedf169780586746eb3d76033dd3dce47968ac4b2fb120919d",
-    "docs/DEPLOYMENT.md": "eb21eb4fcc7309ac3491eb6043a5f71cacaeb821ba9c3f73268101ecb18f7fec",
+    "docs/DEPLOYMENT.md": "b87b0faa281397d8034f237a08b7dcbfc07c03c9c34158a96bcd8fb32d10df59",
     "docs/REVIEWER_DEMO.md": "3e9a02cca15245636ca1c2f3a2f139e8c598d5d87a6e72f0bb7cfb48eebb9d14",
     "docs/SUBMISSION_NOTES_DRAFT.md": "e1b2141a901b635c05b75fe5fa8c198b1cd6fbe065993ca7de51699d9af60f57",
     "docs/THREAT_MODEL.md": "e4a2ff0434b80b720baea1be90e56960a56c17de664b730c6782b3a0d09fb386",
-    "fixtures/covered_offer.json": "d9ff621d684c688b98129875ad1e9f933670ef94e3046f6763487328d51febdb",
-    "fixtures/outside_scope_offer.json": "8fbea809d6ef9fb0682f87bb63257118f2e3923d5501c88d31dbd47a13412ca0",
+    "fixtures/covered_offer.json": "9e77a3bbad1c3aea0ce0760d81644a77c6cb7e14ac0eb4d440bca9c9f2a27b2c",
+    "fixtures/outside_scope_offer.json": "a6f43c4fa36340026c25695f4810d78272993ae6382f0b7ce4e629db4396fb5f",
     "gltest.config.yaml": "83c427cb6965d9f969b1cffe95875e5b13e251efae9a93fd07460b0a1dca4633",
     "package-lock.json": "d3b22faa35a7cf095d96520d1be83849ec7f788c0144e4fbcf979b30afc5fb70",
     "package.json": "56746af7dc8f5b0dcb4ed81c067385e79cb03ebc40a457edb10eb9988bd2d7c2",
     "requirements.txt": "581c76beca24047ef8a1a4c05b147a49ecb9f8999d790dfcedc1bd9d0d676cb6",
     "scripts/check_studionet.py": "2ce3ce51b6f36b0a75b2a7a38923ff957dd23c63efa3de5a82cca00e64ee79d1",
-    "scripts/make_manifest.py": "9c041e149d6e63e3c5ccc21566632ab482141ec0cc1876e8a919b83948adc3d6",
+    "scripts/make_manifest.py": "b44b7188a243504926a26774a5e5104828702f0a9307aed8819cb006bb43d362",
     "scripts/preflight.py": "a303de6cdd66c153beb84a32770ac76c8dc62a32c713c5681c427afef2b588b1",
     "tests/direct/test_firstrefusal.py": "8e19fe6f11b796bb0c7cc806548d177999a6e383329547c43895aea06e1ec6c1",
     "tests/direct/test_protected_transfer.py": "5f41f7c78e4940a658d3360d4427d4b9dd5ea09444f55c816f18446ed17eb838",
     "tests/direct/test_protected_transfer_source.py": "5dccfefa0c8192b807165a6358d5d23c6daefeb71cd851b155166ac07ebff2ee",
-    "tests/integration/test_studionet_lifecycle.py": "83f24a1bcb546a172386f8f6ca48d53c9056394cc1ee937f2af00ac8a9085086"
+    "tests/integration/test_studionet_lifecycle.py": "cfb09c5bc94926a68193a028cb110b172ea6ac9d73dd8a9c5136678ef092c997"
   },
   "network": {
     "chain_id": 61999,
