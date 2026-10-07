@@ -1,7 +1,7 @@
 {
   "files": {
     ".env.example": "817660cd6e1af6156dd3a15aee3b7a38aad7d3da4b051293a85bc94a6e45aebd",
-    ".github/workflows/ci.yml": "a99e3e9dac49abd82ebf6c0f28c076d2199ac8e981f8c82dd4af060c9963c211",
+    ".github/workflows/ci.yml": "2d5f8b8045480df93df6c204c66cafe2c529ee619b85c479fe808c86400a328c",
     ".gitignore": "39868d2691a984d3d99fb36ec661c3211746f2cba3354bd69e7a6971e27499f6",
     ".pytest_cache/.gitignore": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
     ".pytest_cache/CACHEDIR.TAG": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
@@ -28,6 +28,7 @@
     "scripts/check_studionet.py": "2ce3ce51b6f36b0a75b2a7a38923ff957dd23c63efa3de5a82cca00e64ee79d1",
     "scripts/make_manifest.py": "b44b7188a243504926a26774a5e5104828702f0a9307aed8819cb006bb43d362",
     "scripts/preflight.py": "a303de6cdd66c153beb84a32770ac76c8dc62a32c713c5681c427afef2b588b1",
+    "scripts/prepare_legacy_genvm.py": "72e50107980d256e4867c172c79e553216c3910f85d516c24bc216fadee36237",
     "tests/direct/test_firstrefusal.py": "8e19fe6f11b796bb0c7cc806548d177999a6e383329547c43895aea06e1ec6c1",
     "tests/direct/test_protected_transfer.py": "5f41f7c78e4940a658d3360d4427d4b9dd5ea09444f55c816f18446ed17eb838",
     "tests/direct/test_protected_transfer_source.py": "5dccfefa0c8192b807165a6358d5d23c6daefeb71cd851b155166ac07ebff2ee",

@@ -21,6 +21,21 @@ jobs:
           pip install -r requirements.txt
       - name: Install pinned GenLayer CLI
         run: npm install
+      - name: Prepare pinned GenVM runtime
+        env:
+          GENVM_BUNDLE_URL: https://github.com/genlayerlabs/genvm-manager/releases/download/v0.6.0-rc8/genvm-universal.tar.xz
+          GENVM_BUNDLE_SHA256: bd30580f911338d5533460eca8ed714dec371de5803c04e41dbb96430aea7b6e
+        run: |
+          mkdir -p "$RUNNER_TEMP/genvm-tree" "$HOME/.cache/gltest-direct" "$HOME/.cache/genvm-linter"
+          curl --fail --location --retry 3 "$GENVM_BUNDLE_URL" --output "$RUNNER_TEMP/genvm-universal.tar.xz"
+          echo "$GENVM_BUNDLE_SHA256  $RUNNER_TEMP/genvm-universal.tar.xz" | sha256sum --check --strict
+          tar -xJf "$RUNNER_TEMP/genvm-universal.tar.xz" -C "$RUNNER_TEMP/genvm-tree"
+          python scripts/prepare_legacy_genvm.py \
+            --tree "$RUNNER_TEMP/genvm-tree" \
+            --contract contracts/firstrefusal.py \
+            --output "$HOME/.cache/gltest-direct/genvm-universal-v0.6.0-rc8.tar.xz"
+          cp "$HOME/.cache/gltest-direct/genvm-universal-v0.6.0-rc8.tar.xz" \
+            "$HOME/.cache/genvm-linter/genvm-universal-v0.6.0-rc8.tar.xz"
       - name: Verify CLI pin
         run: |
           test "$(npx --no-install genlayer --version | tr -d '\r')" != ""
